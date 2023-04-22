@@ -11,26 +11,60 @@ class _PerguntaAppState extends State<PerguntaApp> {
     setState(() {
       _perguntaSelecionada++;
     });
+    // ignore: avoid_print
     print(_perguntaSelecionada);
   }
 
   @override
   Widget build(BuildContext context) {
-    final perguntas = [
-      'Qual é a sua cor favorita',
-      'Qual é o seu animal favorito'
+    final List<Map<String, Object>> perguntas = [
+      {
+        'texto': 'Qual seu anime favorito?',
+        'resposta': [
+          'Naruto',
+          'Boruto',
+          'Boku no Hero Academia',
+          'Sword Art Online',
+          'Jaspion'
+        ],
+      },
+      {
+        'texto': 'Qual é o seu personagem de anime favorito?',
+        'resposta': ['Naruto ', 'Goku', 'Sasuke', 'Luff', 'Midoriya'],
+      },
+      {
+        'texto': 'Qual é o seu vilão favorito',
+        'resposta': [
+          'Shigaraki',
+          'Madara Uchicha',
+          'Orochimaru',
+          'Cell',
+          'Quinella'
+        ],
+      },
     ];
+
+    List<Widget> respostas = [];
+
+    for (var textoRep in perguntas[_perguntaSelecionada].cast()['resposta']) {
+      respostas.add(Resposta(textoRep, _pressionar));
+    }
+
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Perguntas'),
+          backgroundColor: Colors.black,
         ),
+        backgroundColor: Colors.black,
         body: Column(
           children: [
-            Questao(perguntas[_perguntaSelecionada]),
-            Resposta('Resposta 1', _pressionar),
-            Resposta('Resposta 2', _pressionar),
-            Resposta('Resposta 3', _pressionar),
+            Questao(perguntas[_perguntaSelecionada]['texto'].toString(),
+                estilo: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                )),
+            ...respostas,
           ],
         ),
       ),
