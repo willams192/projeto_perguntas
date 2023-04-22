@@ -13,7 +13,7 @@ class Questao extends StatelessWidget {
       margin: const EdgeInsets.fromLTRB(20, 50, 20, 20),
       child: Text(
         texto,
-        style: estilo ?? TextStyle(fontSize: 28),
+        style: estilo,
         textAlign: TextAlign.center,
       ),
     );
