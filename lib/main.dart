@@ -1,67 +1,54 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+void main() => runApp(const PerguntaApp());
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class PerguntaAppState extends State<PerguntaApp> {
+  var perguntaSelecionada = 0;
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Projeto Flutter',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(title: 'Contador'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
+  void pressionar() {
     setState(() {
-      _counter++;
+      perguntaSelecionada++;
     });
+    print(perguntaSelecionada);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'Incremente o valor',
+    final perguntas = [
+      'Qual é a sua cor favorita',
+      'Qual é o seu animal favorito'
+    ];
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Perguntas'),
+        ),
+        body: Column(
+          children: [
+            Text(perguntas[perguntaSelecionada]),
+            ElevatedButton(
+              child: Text('Resposta 1'),
+              onPressed: pressionar,
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+            ElevatedButton(
+              child: Text('Resposta 2'),
+              onPressed: pressionar,
+            ),
+            ElevatedButton(
+              child: Text('Resposta 3'),
+              onPressed: pressionar,
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ),
     );
+  }
+}
+
+class PerguntaApp extends StatefulWidget {
+  const PerguntaApp({super.key});
+  @override
+  PerguntaAppState createState() {
+    return PerguntaAppState();
   }
 }
