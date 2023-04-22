@@ -71,7 +71,15 @@ class _PerguntaAppState extends State<PerguntaApp> {
                   ...widgets,
                 ],
               )
-            : null,
+            : const Center(
+                child: Text(
+                  'Parabéns',
+                  style: TextStyle(
+                    fontSize: 28,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
       ),
     );
   }
