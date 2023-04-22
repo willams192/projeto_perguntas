@@ -10,10 +10,10 @@ class Questao extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      margin: const EdgeInsets.all(20),
+      margin: const EdgeInsets.fromLTRB(20, 50, 20, 20),
       child: Text(
         texto,
-        style: estilo ?? TextStyle(fontSize: 28),
+        style: estilo,
         textAlign: TextAlign.center,
       ),
     );
